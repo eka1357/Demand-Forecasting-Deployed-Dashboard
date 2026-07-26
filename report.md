@@ -14,7 +14,8 @@
 | 7-Day MA | 2067.67 | 2479.21 | 29.21% |
 | SARIMA | 1038.70 | 1373.73 | 14.64% |
 | Prophet | 953.26 | 1269.95 | 13.19% |
-*(To be completed: LSTM models and a single chart comparing performance across folds)*
+| LSTM | 1840.37 | 2300.15 | 25.16% |
+*(To be completed: a single chart comparing performance across folds)*
 
 ## 3. Conclusion
 *(To be completed: 3-5 sentence summary of which model won and why)*
