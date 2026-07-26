@@ -46,3 +46,30 @@ def log_results(model_name, fold, mae, rmse, mape, filepath='evaluation/results.
         res_df.to_csv(filepath, index=False)
     else:
         res_df.to_csv(filepath, mode='a', header=False, index=False)
+
+def generate_evaluation_report():
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import os
+    
+    filepath = os.path.join(os.path.dirname(__file__), 'results.csv')
+    if not os.path.exists(filepath):
+        print("Results file not found.")
+        return
+        
+    df = pd.read_csv(filepath)
+    avg_df = df.groupby('Model').mean().reset_index()
+    avg_df = avg_df.sort_values('MAPE')
+    
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=avg_df, x='Model', y='MAPE', palette='viridis')
+    plt.title('Model Comparison: Mean Absolute Percentage Error (MAPE)')
+    plt.ylabel('MAPE (%)')
+    plt.xlabel('Model')
+    
+    chart_path = os.path.join(os.path.dirname(__file__), 'comparison_chart.png')
+    plt.savefig(chart_path)
+    print(f"Chart saved to {chart_path}")
+
+if __name__ == '__main__':
+    generate_evaluation_report()
